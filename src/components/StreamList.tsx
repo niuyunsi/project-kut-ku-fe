@@ -17,7 +17,7 @@ const StreamWrapper = styled.div`
 `;
 
 interface Props {
-  streams?: (ConferenceStream | undefined)[];
+  streams?: ConferenceStream[];
 }
 
 export const StreamList: React.FC<Props> = ({ streams }) => {
@@ -25,11 +25,7 @@ export const StreamList: React.FC<Props> = ({ streams }) => {
     return null;
   }
 
-  const renderStream = (stream?: ConferenceStream) => {
-    if (!stream) {
-      return null;
-    }
-    
+  const renderStream = (stream: ConferenceStream) => {
     return (
       <StreamWrapper key={stream.id}>
         <Stream stream={stream.stream} mirror={stream.local} />

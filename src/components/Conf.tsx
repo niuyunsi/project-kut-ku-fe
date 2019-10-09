@@ -23,6 +23,9 @@ export const Conf: React.FC<Props> = ({ roomName }) => {
   const renderConference = (streamProps: IStreamsRendererProps): JSX.Element | null | false => {
     const sortStreams = (streamProps: IStreamsRendererProps) => {
       const { localStream, remoteStreams } = streamProps;
+      if (!localStream) {
+        return {};
+      }
       if (!remoteStreams || remoteStreams.length === 0) {
         return { mainStream: localStream };
       }
@@ -41,6 +44,7 @@ export const Conf: React.FC<Props> = ({ roomName }) => {
   };
 
   const handleError = (error: any) => {
+    // NOTE(yunsi): Add error handling
     console.log('got error', error);
   };
 
