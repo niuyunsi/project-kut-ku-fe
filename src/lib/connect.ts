@@ -3,7 +3,7 @@ import { SpreedConnect } from 'react-conf-webrtc';
 export const connect = () => {
   const url = process.env.REACT_APP_SPREED_URL
     ? process.env.REACT_APP_SPREED_URL
-    : `ws://${window.location.hostname}:8080`;
+    : `ws://${window.location.hostname}:8080/ws`;
 
   const conn = SpreedConnect(url);
 
