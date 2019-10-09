@@ -7,30 +7,35 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const StyledVidoe = styled.video`
+interface StyledVideoProps {
+  mirror?: boolean;
+}
+
+const StyledVideo = styled.video`
   position: absolute;
   width: 100%;
   height: 100%;
+  transform: ${({ mirror }: StyledVideoProps) => mirror && 'rotateY(180deg)'};
 `;
 
-interface StreamProps {
+interface Props {
   stream: MediaStream;
   muted?: boolean;
   mirror?: boolean;
 }
 
-export const Stream: React.FC<StreamProps> = props => {
+export const Stream: React.FC<Props> = ({ stream, muted, mirror }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.srcObject = props.stream;
+      videoRef.current.srcObject = stream;
     }
-  }, [props.stream]);
+  }, [stream]);
 
   return (
     <Wrapper>
-      <StyledVidoe ref={videoRef} autoPlay muted={props.muted} />
+      <StyledVideo ref={videoRef} autoPlay muted={muted} mirror={mirror} />
     </Wrapper>
   );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Conference, SpreedConnect, IStreamsRendererProps } from 'react-conf-webrtc';
+import { Conference, IStreamsRendererProps } from 'react-conf-webrtc';
 import styled from 'styled-components/macro';
 
-import { MainStream } from './MainStream';
-import { StreamList } from './StreamList';
-import { Control } from './Control';
+import { Control, MainStream, StreamList } from './';
+import { connect } from '../lib/connect';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,29 +15,26 @@ const config: RTCConfiguration = {
   iceServers: [{ urls: 'stun:stun1.l.google.com:19302' }, { urls: 'stun:stun2.l.google.com:19302' }]
 };
 
-function connect() {
-  // const webRTCUrl = env.SPREED_URL ? env.SPREED_URL : location.hostname + ":8443";
-  const webRTCUrl = 'localhost:8080';
-  const conn = SpreedConnect('ws://' + webRTCUrl + '/ws');
-  conn.onconnmessage = (msg, done) => {
-    console.log('Intercepted SpreedResponse message with type: %s', msg.Data.Type);
-    done();
-  };
-  return conn;
-}
-
-interface ConfProps {
+interface Props {
   roomName: string;
 }
 
-export const Conf: React.FunctionComponent<ConfProps> = props => {
+export const Conf: React.FC<Props> = ({ roomName }) => {
   const renderConference = (streamProps: IStreamsRendererProps): JSX.Element | null | false => {
-    const { localStream, remoteStreams } = streamProps;
+    const sortStreams = (streamProps: IStreamsRendererProps) => {
+      const { localStream, remoteStreams } = streamProps;
+      if (!remoteStreams || remoteStreams.length === 0) {
+        return { mainStream: localStream };
+      }
+      return { mainStream: remoteStreams[0], sideStreams: [localStream, ...remoteStreams.slice(1)] };
+    };
+
+    const { mainStream, sideStreams } = sortStreams(streamProps);
 
     return (
       <Wrapper>
-        <MainStream stream={localStream} />
-        <StreamList streams={remoteStreams} />
+        <MainStream stream={mainStream} />
+        <StreamList streams={sideStreams} />
         <Control />
       </Wrapper>
     );
@@ -52,7 +48,7 @@ export const Conf: React.FunctionComponent<ConfProps> = props => {
     <Conference
       render={renderConference}
       connect={connect}
-      room={props.roomName}
+      room={roomName}
       peerConnectionConfig={config}
       onError={handleError}
     />

@@ -9,17 +9,17 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-interface MainStreamProps {
+interface Props {
   stream?: ConferenceStream;
 }
 
-export const MainStream: React.FC<MainStreamProps> = props => {
-  if (!props.stream) {
+export const MainStream: React.FC<Props> = ({ stream }) => {
+  if (!stream) {
     return <div>loading</div>;
   }
   return (
     <Wrapper>
-      <Stream stream={props.stream.stream} muted={props.stream.local} mirror={props.stream.local} />
+      <Stream stream={stream.stream} muted={stream.local} mirror={stream.local} />
     </Wrapper>
   );
 };

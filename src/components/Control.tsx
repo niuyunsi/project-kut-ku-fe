@@ -12,7 +12,7 @@ const ControlWrapper = styled.div`
   transform: translate(-50%, 0);
 `;
 
-export const Control: React.FunctionComponent = () => {
+export const Control: React.FC = () => {
   const history = useHistory();
   const handleExit = () => {
     history.push('/');

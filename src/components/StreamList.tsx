@@ -16,31 +16,26 @@ const StreamWrapper = styled.div`
   height: 150px;
 `;
 
-const StreamFooter = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
-
 interface Props {
-  streams?: ConferenceStream[];
+  streams?: (ConferenceStream | undefined)[];
 }
 
-export const StreamList: React.FC<Props> = props => {
-  if (!props.streams) {
+export const StreamList: React.FC<Props> = ({ streams }) => {
+  if (!streams) {
     return null;
   }
 
-  const renderStream = (stream: ConferenceStream) => {
-    const name = stream.id.substring(0, 10);
-
+  const renderStream = (stream?: ConferenceStream) => {
+    if (!stream) {
+      return null;
+    }
+    
     return (
       <StreamWrapper key={stream.id}>
-        <Stream stream={stream.stream} />
-        <StreamFooter>{name}</StreamFooter>
+        <Stream stream={stream.stream} mirror={stream.local} />
       </StreamWrapper>
     );
   };
 
-  return <Wrapper>{props.streams.map(renderStream)}</Wrapper>;
+  return <Wrapper>{streams.map(renderStream)}</Wrapper>;
 };

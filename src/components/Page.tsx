@@ -46,11 +46,11 @@ const Inner = styled.div`
   /* height: 100%; */
 `;
 
-interface PageProps {
+interface Props {
   children: JSX.Element;
 }
 
-export const Page = (props: PageProps) => {
+export const Page: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     document.title = 'project malfestio';
   });
@@ -61,10 +61,8 @@ export const Page = (props: PageProps) => {
         <>
           <GlobalStyle />
           <StyledPage>
-            {/* <Header /> */}
-            <Inner>{props.children}</Inner>
+            <Inner>{children}</Inner>
           </StyledPage>
-          {/* {props.children} */}
         </>
       </ThemeProvider>
     </StylesProvider>
