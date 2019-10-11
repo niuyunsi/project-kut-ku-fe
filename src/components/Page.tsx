@@ -52,7 +52,7 @@ interface Props {
 
 export const Page: React.FC<Props> = ({ children }) => {
   useEffect(() => {
-    document.title = 'project kut-ku 0.0.1';
+    document.title = 'project kut-ku';
   });
 
   return (

@@ -35,7 +35,6 @@ export const Home: React.FC = () => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    console.log('useEffect');
     if (isDirty) {
       setHasError(validate());
     }
