@@ -13,4 +13,8 @@ deploy_heroku:
 	@echo "$(OK_COLOR)>>>>>>>>>>RELEASING>>>>>>>>>>$(NO_COLOR)"
 	@heroku container:release web
 
+deploy_s3:
+	@echo "$(OK_COLOR)>>>>>>>>>>PUSHING TO S3 BUCKET>>>>>>>>>>$(NO_COLOR)"
+	# @aws s3 rm --recursive s3://project-5-yniu && aws s3 cp --recursive build s3://project-5-yniu
+
 .PHONY: build
