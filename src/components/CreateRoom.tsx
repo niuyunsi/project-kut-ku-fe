@@ -4,6 +4,8 @@ import styled from 'styled-components/macro';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import { validateRoomName } from '../lib/validateRoomName';
+
 const Wrapper = styled.div`
   width: 20rem;
   margin: 1rem;
@@ -28,15 +30,10 @@ export const CreateRoom: React.FC = () => {
 
   useEffect(() => {
     if (isDirty) {
-      setHasError(validate());
+      setHasError(validateRoomName(roomName));
     }
     // eslint-disable-next-line
   }, [isDirty, roomName]);
-
-  const validate = () => {
-    const re = new RegExp('^[a-zA-Z0-9]*$');
-    return !roomName || !re.test(roomName);
-  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsDirty(true);

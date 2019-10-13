@@ -21,29 +21,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const StyledPage = styled.div`
-  /* background: white; */
-  /* border: 1px solid ${props => props.theme.red}; */
-  /* margin: 1rem; */
   position: absolute;
   width: 100%;
   height: 100%;
-  /* padding: 1rem; */
   color: ${props => props.theme.black};
   background-color: ${props => props.theme.lightgrey};
   display: flex;
 	flex-direction: column;
-	/* align-items: stretch; */
 `;
 
 const Inner = styled.div`
   flex: 1;
-  /* max-width: ${props => props.theme.maxWidth}; */
-  /* margin: 0 auto; */
-  /* padding: 2rem; */
-  /* border: 1px solid black; */
-  /* position: absolute; */
-  /* width: 100%; */
-  /* height: 100%; */
 `;
 
 interface Props {
