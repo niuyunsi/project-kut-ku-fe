@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { CreateRoom } from '../components';
+import { JoinRoom } from '../components';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,6 +13,6 @@ const Wrapper = styled.div`
 
 export const Home: React.FC = () => (
   <Wrapper>
-    <CreateRoom />
+    <JoinRoom />
   </Wrapper>
 );

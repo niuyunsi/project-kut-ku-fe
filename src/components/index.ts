@@ -1,6 +1,6 @@
 export * from './Conf';
 export * from './Control';
-export * from './CreateRoom';
+export * from './JoinRoom';
 export * from './MainStream';
 export * from './Page';
 export * from './Routes';

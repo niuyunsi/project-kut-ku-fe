@@ -22,7 +22,7 @@ const StyledButton = styled(Button)`
   margin-top: 1rem;
 `;
 
-export const CreateRoom: React.FC = () => {
+export const JoinRoom: React.FC = () => {
   const history = useHistory();
   const [roomName, setRoomName] = useState('');
   const [isDirty, setIsDirty] = useState(false);
