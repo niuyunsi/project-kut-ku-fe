@@ -34,7 +34,7 @@ interface Props {
 
 export const Page: React.FC<Props> = ({ children }) => {
   useEffect(() => {
-    document.title = 'project kut-ku | 0.1.0';
+    document.title = `project kut-ku | ${process.env.REACT_APP_VERSION}`;
   });
 
   return (
