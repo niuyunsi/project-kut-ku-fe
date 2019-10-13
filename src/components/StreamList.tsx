@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 
 const StreamWrapper = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 10rem;
+  height: 10rem;
 `;
 
 interface Props {

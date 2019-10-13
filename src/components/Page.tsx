@@ -3,20 +3,14 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components/macr
 import { StylesProvider } from '@material-ui/core';
 
 const theme = {
-  red: '#FF0000',
   black: '#393939',
-  grey: '#3A3A3A',
-  lightgrey: '#E1E1E1',
-  offWhite: '#EDEDED',
-  maxWidth: '1000px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)'
+  lightgrey: '#E1E1E1'
 };
 
 const GlobalStyle = createGlobalStyle`
 	body {
     padding: 0;
 		margin: 0;
-		font-size: 1rem;
   }
 `;
 
@@ -27,7 +21,7 @@ const StyledPage = styled.div`
   color: ${props => props.theme.black};
   background-color: ${props => props.theme.lightgrey};
   display: flex;
-	flex-direction: column;
+  flex-direction: column;
 `;
 
 const Inner = styled.div`
