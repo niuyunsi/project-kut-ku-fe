@@ -1,5 +1,5 @@
 import React from 'react';
-import { Conference, IStreamsRendererProps } from 'react-conf-webrtc';
+import { Conference, IStreamsRendererProps, ConferenceError } from 'react-conf-webrtc';
 import styled from 'styled-components/macro';
 
 import { Control, MainStream, StreamList } from './';
@@ -43,9 +43,10 @@ export const Conf: React.FC<Props> = ({ roomName }) => {
     );
   };
 
-  const handleError = (error: any) => {
-    // NOTE(yunsi): Add error handling
-    console.log('got error', error);
+  const handleError = (error: ConferenceError) => {
+    console.log('ConferenceError', error);
+    const message = error.type ? error.type : 'Unknown error';
+    return alert(message);
   };
 
   return (
